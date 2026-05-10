@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#3d4a5e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>CEIP Plurilingüe de Monforte — Horarios</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette extracted from logo: coral-red, sage green, slate-purple, white */
+    --bg: #f4f5f4;
+    --bg2: #e8ebe8;
+    --card: #ffffff;
+    --ink: #2b2d35;
+    --ink2: #555a63;
+    --ink3: #8e939d;
+    --accent: #c94040;      /* coral red from logo */
+    --accent2: #5b7fa6;     /* slate blue-grey from logo dotted block */
+    --accent3: #7ba688;     /* sage green from logo triangle */
+    --accent-light: #faeaea;
+    --border: #dde0db;
+    --shadow: 0 2px 12px rgba(43,45,53,.07);
+    --shadow-lg: 0 8px 32px rgba(43,45,53,.13);
+    --radius: 12px;
+    --red: #c94040;
+    --green: #7ba688;
+    --slate: #5b7fa6;
+    --dark-slate: #3d4a5e;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 15px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--dark-slate);
+    color: #fff;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,.22);
+    border-bottom: 3px solid var(--red);
+  }
+  .logo-mark {
+    width: 48px; height: 36px;
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--dark-slate);
+    padding: 4px 2px;
+  }
+  /* No pseudo-elements needed anymore */
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: .01em;
+  }
+  header span { opacity: .5; font-size: .8rem; }
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: .75rem; }
+  .school-year {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    padding: .3rem .75rem;
+    border-radius: 20px;
+    font-size: .8rem;
+    color: rgba(255,255,255,.8);
+  }
+
+  /* NAV TABS */
+  .nav {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    padding: .875rem 1.25rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--ink3);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all .2s;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .nav-btn:hover { color: var(--ink); }
+  .nav-btn.active { color: var(--red); border-bottom-color: var(--red); }
+  .nav-icon { font-size: 1rem; }
+
+  /* LAYOUT */
+  .page { display: none; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+  .page.active { display: block; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin-bottom: .25rem;
+  }
+  .section-sub { color: var(--ink3); font-size: .875rem; margin-bottom: 1.5rem; }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: .75rem;
+  }
+  .card-body { padding: 1.5rem; }
+
+
+  /* TEACHER GROUPS */
+  .teacher-group { margin-bottom: 1.5rem; }
+  .teacher-group-header {
+    display: flex; align-items: center; gap: .65rem;
+    margin-bottom: .65rem;
+  }
+  .group-label {
+    font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; padding: .22rem .7rem;
+    border-radius: 20px; color: #fff; white-space: nowrap;
+  }
+  .group-label.infantil  { background: var(--green); }
+  .group-label.primaria  { background: var(--slate); }
+  .group-label.espec     { background: var(--red); }
+  .group-divider { flex: 1; height: 1px; background: var(--border); }
+
+  .teacher-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    gap: .55rem;
+  }
+  .teacher-chip {
+    padding: .55rem .75rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .84rem;
+    font-weight: 500;
+    color: var(--ink2);
+    transition: all .18s;
+    text-align: left;
+    line-height: 1.25;
+  }
+  .teacher-chip:hover { border-color: var(--red); color: var(--red); background: var(--accent-light); }
+  .teacher-chip.selected { border-color: var(--red); background: var(--red); color: #fff; }
+  .teacher-chip.infantil:hover  { border-color: var(--green); color: var(--green); background: #e8f2eb; }
+  .teacher-chip.infantil.selected { border-color: var(--green); background: var(--green); color: #fff; }
+  .teacher-chip.primaria:hover  { border-color: var(--slate); color: var(--slate); background: #edf2f8; }
+  .teacher-chip.primaria.selected { border-color: var(--slate); background: var(--slate); color: #fff; }
+  .chip-name { display: block; font-weight: 600; }
+  .chip-sub  { display: block; font-size: .71rem; opacity: .7; margin-top: .05rem; font-weight: 400; }
+  .chip-subst {
+    display: inline-block; font-size: .63rem; font-weight: 700;
+    background: #fff3cd; color: #7a5800; border: 1px solid #f0d060;
+    padding: .05rem .4rem; border-radius: 3px; margin-top: .2rem;
+    text-transform: uppercase; letter-spacing: .03em;
+  }
+  .teacher-chip.selected .chip-subst { background: rgba(255,255,255,.25); color: #fff; border-color: rgba(255,255,255,.4); }
+
+  /* RENAME MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(43,45,53,.5); z-index: 500;
+    align-items: center; justify-content: center; padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow-lg); padding: 1.5rem;
+    width: 100%; max-width: 400px;
+    animation: modalIn .2s ease;
+  }
+  @keyframes modalIn {
+    from { opacity:0; transform: scale(.95) translateY(10px); }
+    to   { opacity:1; transform: scale(1)   translateY(0); }
+  }
+  .modal h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; font-weight: 400; margin-bottom: .2rem;
+  }
+  .modal-sub { color: var(--ink3); font-size: .82rem; margin-bottom: 1.1rem; }
+  .modal-field { margin-bottom: .9rem; }
+  .modal-field label {
+    display: block; font-size: .75rem; font-weight: 700;
+    color: var(--ink2); margin-bottom: .35rem;
+    text-transform: uppercase; letter-spacing: .05em;
+  }
+  .modal-input {
+    width: 100%; padding: .6rem .85rem;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: .95rem;
+    color: var(--ink); background: var(--bg); outline: none;
+    transition: border-color .18s;
+  }
+  .modal-input:focus { border-color: var(--red); }
+  .modal-restore {
+    font-size: .78rem; color: var(--ink3); cursor: pointer;
+    text-decoration: underline; margin-top: .3rem; display: inline-block;
+  }
+  .modal-restore:hover { color: var(--ink); }
+  .modal-actions { display: flex; gap: .6rem; justify-content: flex-end; margin-top: 1.25rem; }
+
+  /* RENAME button in card header */
+  .rename-btn {
+    margin-left: auto; flex-shrink: 0;
+    padding: .35rem .8rem;
+    border: 1.5px solid var(--border); border-radius: 6px;
+    background: var(--bg); cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .78rem; font-weight: 600; color: var(--ink2);
+    transition: all .18s;
+  }
+  .rename-btn:hover { border-color: var(--red); color: var(--red); background: var(--accent-light); }
+  .subst-tag {
+    font-size: .72rem; font-weight: 700;
+    background: #fff3cd; color: #7a5800; border: 1px solid #f0d060;
+    padding: .1rem .45rem; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: .03em; margin-left: .5rem;
+  }
+
+
+
+  /* SCHEDULE TABLE */
+  .schedule-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  /* Fade hint on right edge when table overflows */
+  .scroll-hint {
+    display: none;
+    font-size: .72rem;
+    color: var(--ink3);
+    text-align: right;
+    padding: .3rem .75rem .1rem;
+    font-style: italic;
+  }
+  .schedule-table {
+    width: 100%; border-collapse: collapse;
+    font-size: .875rem;
+  }
+  .schedule-table th {
+    background: var(--dark-slate);
+    color: #fff;
+    padding: .75rem 1rem;
+    font-weight: 600;
+    text-align: left;
+    font-size: .8rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .schedule-table th:first-child { width: 80px; }
+  .schedule-table td {
+    padding: .75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    min-width: 130px;
+  }
+  .schedule-table tr:last-child td { border-bottom: none; }
+  .schedule-table tbody tr:hover td { background: var(--bg); }
+  .session-label {
+    font-weight: 700;
+    color: var(--ink3);
+    font-size: .8rem;
+    text-align: center;
+  }
+  .cell-content {
+    display: inline-block;
+    padding: .25rem .6rem;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: .83rem;
+  }
+  .cell-class { background: #ddeaf5; color: #2a4a6e; }
+  .cell-libre { background: #e4f0e8; color: #2d6040; font-style: italic; }
+  .cell-guardia { background: #faeaea; color: #8a2020; }
+  .cell-apoyo { background: #eae8f5; color: #3d3070; }
+  .cell-biblio { background: #e4edf5; color: #1a4060; }
+  .cell-other { background: var(--bg2); color: var(--ink2); }
+  .cell-empty { color: var(--ink3); font-style: italic; font-size: .8rem; }
+
+  /* EDIT MODE */
+  .edit-bar {
+    display: flex; align-items: center; gap: .75rem;
+    margin-bottom: 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: .75rem 1rem;
+  }
+  .btn {
+    padding: .5rem 1.1rem;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    transition: all .18s;
+  }
+  .btn-primary { background: var(--red); color: #fff; }
+  .btn-primary:hover { background: #a82e2e; }
+  .btn-secondary { background: var(--bg2); color: var(--ink2); border: 1px solid var(--border); }
+  .btn-secondary:hover { background: var(--border); }
+  .btn-success { background: var(--green); color: #fff; }
+  .btn-success:hover { background: #5e8a6e; }
+  .edit-mode-badge {
+    display: none;
+    background: var(--red);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: .2rem .6rem;
+    border-radius: 4px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .edit-mode-badge.visible { display: inline-block; }
+  .edit-hint { color: var(--ink3); font-size: .8rem; }
+
+  /* Editable cell */
+  .schedule-table td.editable { cursor: pointer; }
+  .schedule-table td.editable:hover { background: var(--accent-light) !important; }
+  .cell-input {
+    width: 100%;
+    border: 1.5px solid var(--red);
+    border-radius: 5px;
+    padding: .3rem .5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .83rem;
+    font-weight: 500;
+    background: #fff;
+    color: var(--ink);
+    outline: none;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    position: relative;
+    max-width: 340px;
+    margin-bottom: 1.25rem;
+  }
+  .search-icon {
+    position: absolute; left: .875rem; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink3); font-size: 1rem;
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    padding: .65rem 1rem .65rem 2.4rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .875rem;
+    background: var(--card);
+    color: var(--ink);
+    transition: border-color .2s;
+    outline: none;
+  }
+  .search-input:focus { border-color: var(--red); }
+
+  /* GUARDIAS TABLE */
+  .guardias-table {
+    width: 100%; border-collapse: collapse; font-size: .85rem;
+  }
+  .guardias-table th {
+    background: var(--slate);
+    color: #fff; padding: .7rem 1rem;
+    font-weight: 600; font-size: .8rem;
+    letter-spacing: .04em; text-transform: uppercase; text-align: left;
+  }
+  .guardias-table td {
+    padding: .65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .guardias-table tbody tr:nth-child(even) td { background: var(--bg); }
+  .guardias-table .session-col { font-weight: 700; color: var(--ink2); font-size: .85rem; text-align: center; }
+  .guardia-name {
+    display: inline-block;
+    background: #dde6f0;
+    color: var(--dark-slate);
+    padding: .18rem .5rem;
+    border-radius: 4px;
+    font-size: .78rem;
+    font-weight: 500;
+    margin: .1rem .1rem;
+  }
+
+  /* TRANSPORT */
+  .transport-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;
+  }
+  .transport-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .transport-card-header {
+    background: var(--green);
+    color: #fff;
+    padding: .65rem 1rem;
+    font-weight: 600; font-size: .875rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .transport-card-body { padding: .75rem 1rem; }
+  .transport-row {
+    display: flex; align-items: center; gap: .5rem;
+    padding: .3rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .83rem;
+  }
+  .transport-row:last-child { border-bottom: none; }
+  .transport-day {
+    width: 70px; font-weight: 600; color: var(--ink2);
+    font-size: .78rem; flex-shrink: 0;
+  }
+  .transport-teacher { color: var(--ink); }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center; padding: 3rem 1rem; color: var(--ink3);
+  }
+  .empty-state-icon { font-size: 3rem; margin-bottom: .75rem; opacity: .5; }
+  .empty-state p { font-size: .9rem; }
+
+  /* TOAST */
+  #toast {
+    position: fixed; bottom: 2rem; right: 2rem;
+    background: var(--accent3); color: #fff;
+    padding: .75rem 1.25rem; border-radius: 8px;
+    font-size: .875rem; font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    opacity: 0; transform: translateY(1rem);
+    transition: all .3s; pointer-events: none; z-index: 999;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ALUMNADO - COURSE SELECTOR */
+  .course-level-tabs {
+    display: flex; gap: .5rem; margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .level-btn {
+    padding: .45rem 1.1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    background: var(--card);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem; font-weight: 500;
+    color: var(--ink2);
+    transition: all .18s;
+  }
+  .level-btn:hover { border-color: var(--slate); color: var(--slate); }
+  .level-btn.active { background: var(--slate); border-color: var(--slate); color: #fff; }
+
+  .course-grid {
+    display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2rem;
+  }
+  .course-chip {
+    padding: .55rem 1.1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 600;
+    color: var(--ink2);
+    transition: all .18s;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .course-chip:hover { border-color: var(--slate); color: var(--slate); background: #edf2f8; }
+  .course-chip.selected { border-color: var(--slate); background: var(--slate); color: #fff; }
+  .course-chip.infantil:hover { border-color: var(--green); color: var(--green); background: #e8f2eb; }
+  .course-chip.infantil.selected { border-color: var(--green); background: var(--green); color: #fff; }
+  .course-chip.hidden { display: none; }
+
+  /* CLASS EDIT BAR */
+  .class-edit-bar {
+    display: flex; align-items: center; gap: .75rem;
+    margin-bottom: 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: .75rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* TWO-LINE CELL: Materia + Profesor */
+  .cell-slot {
+    display: flex; flex-direction: column; gap: .18rem;
+  }
+  .cell-subject {
+    font-weight: 600; font-size: .82rem; line-height: 1.2;
+  }
+  .cell-teacher-name {
+    font-size: .73rem; opacity: .75; font-weight: 400;
+  }
+  /* Coloured backgrounds per type */
+  .teacher-cell { border-radius: 6px; padding: .3rem .6rem; display: inline-block; }
+  .teacher-cell.tutor     { background: #dde6f0; color: var(--dark-slate); }
+  .teacher-cell.specialist{ background: #e4f0e8; color: #2d5e3a; }
+  .teacher-cell.empty     { color: var(--ink3); font-style: italic; font-size: .8rem; }
+
+  /* Editable class cell */
+  .class-schedule-table td.cls-editable { cursor: pointer; }
+  .class-schedule-table td.cls-editable:hover { background: #edf2f8 !important; }
+  .cls-input-wrap {
+    display: flex; flex-direction: column; gap: .25rem;
+  }
+  .cls-input {
+    width: 100%; padding: .28rem .45rem;
+    border: 1.5px solid var(--slate); border-radius: 5px;
+    font-family: 'DM Sans', sans-serif; font-size: .78rem;
+    background: #fff; color: var(--ink); outline: none;
+  }
+  .cls-input.subject-input { font-weight: 600; border-color: var(--slate); }
+  .cls-input.teacher-input { border-color: var(--green); }
+  .cls-input-label {
+    font-size: .62rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--ink3); margin-bottom: .05rem;
+  }
+
+  @media (max-width: 640px) {
+    .class-edit-bar { padding: .6rem .75rem; gap: .5rem; }
+    .class-edit-bar .btn { font-size: .8rem; padding: .45rem .85rem; }
+  }
+
+
+  .class-schedule-table {
+    width: 100%; border-collapse: collapse; font-size: .875rem;
+  }
+  .class-schedule-table th {
+    background: var(--slate);
+    color: #fff; padding: .75rem 1rem;
+    font-weight: 600; font-size: .8rem;
+    letter-spacing: .04em; text-transform: uppercase; text-align: left;
+  }
+  .class-schedule-table th:first-child { width: 80px; text-align: center; }
+  .class-schedule-table td {
+    padding: .75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    min-width: 140px;
+  }
+  .class-schedule-table tr:last-child td { border-bottom: none; }
+  .class-schedule-table tbody tr:hover td { background: #f0f4f8; }
+  .class-schedule-table .recreo-row td {
+    background: var(--bg2); color: var(--ink3);
+    font-size: .78rem; text-align: center;
+    padding: .4rem 1rem; font-style: italic;
+  }
+  .teacher-cell {
+    display: inline-flex; align-items: center; gap: .35rem;
+    padding: .3rem .7rem; border-radius: 6px;
+    font-weight: 500; font-size: .83rem;
+  }
+  .teacher-cell.tutor { background: #dde6f0; color: var(--dark-slate); }
+  .teacher-cell.specialist { background: #e4f0e8; color: #2d5e3a; }
+  .teacher-cell.empty { color: var(--ink3); font-style: italic; font-size: .8rem; }
+  
+
+  /* =============================================
+     RESPONSIVE — TABLET (≤ 900px)
+  ============================================= */
+  @media (max-width: 900px) {
+    .teacher-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .transport-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .schedule-table td { min-width: 110px; }
+    .class-schedule-table td { min-width: 110px; }
+  }
+
+  /* =============================================
+     RESPONSIVE — MOBILE (≤ 640px)
+  ============================================= */
+  @media (max-width: 640px) {
+
+    /* --- HEADER --- */
+    header {
+      padding: 0 1rem;
+      height: 56px;
+    }
+    header h1 { font-size: .9rem; line-height: 1.2; }
+    header span { display: none; }
+    .school-year { font-size: .72rem; padding: .25rem .6rem; }
+
+    /* --- NAV: move to bottom, icon+label tabs --- */
+    .nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      top: auto;
+      padding: 0;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: none;
+      display: flex;
+      justify-content: space-around;
+      z-index: 200;
+      box-shadow: 0 -2px 12px rgba(43,45,53,.1);
+    }
+    .nav-btn {
+      flex: 1;
+      flex-direction: column;
+      gap: .15rem;
+      padding: .5rem .25rem .4rem;
+      font-size: .65rem;
+      border-bottom: none;
+      border-top: 2px solid transparent;
+    }
+    .nav-btn.active {
+      border-bottom: none;
+      border-top-color: var(--red);
+      color: var(--red);
+      background: var(--accent-light);
+    }
+    .nav-icon { font-size: 1.2rem; }
+
+    /* --- PAGE: add bottom padding for fixed nav --- */
+    .page {
+      padding: 1rem 1rem 5rem;
+      max-width: 100%;
+    }
+
+    /* --- SECTION TITLE --- */
+    .section-title { font-size: 1.35rem; }
+    .section-sub { font-size: .8rem; }
+
+    /* --- EDIT BAR --- */
+    .edit-bar {
+      flex-wrap: wrap;
+      gap: .5rem;
+      padding: .6rem .75rem;
+    }
+    .edit-bar .btn { font-size: .8rem; padding: .45rem .85rem; }
+    .edit-hint { font-size: .72rem; width: 100%; }
+
+    /* --- SEARCH --- */
+    .search-wrap { max-width: 100%; }
+
+    /* --- TEACHER GRID --- */
+    .teacher-grid { grid-template-columns: repeat(3, 1fr); gap: .4rem; }
+    .teacher-chip { font-size: .78rem; padding: .5rem .5rem; }
+
+    /* --- SCHEDULE TABLE → card-per-day on mobile --- */
+    .schedule-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .schedule-table {
+      font-size: .8rem;
+      min-width: 520px; /* allow horizontal scroll */
+    }
+    .schedule-table th, .schedule-table td { padding: .55rem .65rem; }
+    .cell-content { font-size: .76rem; padding: .2rem .45rem; }
+
+    /* --- GUARDIAS TABLE → horizontal scroll --- */
+    .guardias-table {
+      font-size: .78rem;
+      min-width: 520px;
+    }
+    .guardias-table th, .guardias-table td { padding: .5rem .6rem; }
+    .guardia-name { font-size: .72rem; padding: .14rem .4rem; }
+
+    /* --- CLASS SCHEDULE TABLE → horizontal scroll --- */
+    .class-schedule-table {
+      font-size: .8rem;
+      min-width: 520px;
+    }
+    .class-schedule-table th, .class-schedule-table td { padding: .55rem .65rem; }
+    .teacher-cell { font-size: .76rem; padding: .22rem .5rem; }
+
+    /* --- TRANSPORT: single column cards --- */
+    .transport-grid { grid-template-columns: 1fr; }
+    .transport-card-header { font-size: .82rem; }
+    .transport-row { font-size: .8rem; }
+
+    /* --- COURSE CHIPS --- */
+    .course-level-tabs { gap: .4rem; margin-bottom: 1rem; }
+    .level-btn { font-size: .8rem; padding: .38rem .85rem; }
+    .course-grid { gap: .4rem; }
+    .course-chip { font-size: .85rem; padding: .45rem .9rem; }
+
+    /* --- CARD HEADER --- */
+    .card-header { padding: .75rem 1rem; }
+
+    /* --- TOAST: full width bottom --- */
+    #toast {
+      left: 1rem; right: 1rem; bottom: 5rem;
+      text-align: center;
+      font-size: .82rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .scroll-hint { display: block; }
+  }
+  @media (max-width: 380px) {
+    .teacher-grid { grid-template-columns: repeat(2, 1fr); }
+    .teacher-chip { font-size: .74rem; }
+    header h1 { font-size: .82rem; }
+    .school-year { display: none; }
+    .nav-label { font-size: 0; width: 0; overflow: hidden; }
+    .nav-icon { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">
+    <svg width="44" height="28" viewBox="0 0 44 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="9" width="28" height="9" fill="#c94040"/>
+      <polygon points="16,1 32,1 32,18" fill="#7ba688" opacity="0.92"/>
+      <rect x="32" y="1" width="10" height="17" fill="#5b7fa6"/>
+      <rect x="0" y="19" width="32" height="2" fill="white" opacity="0.6"/>
+    </svg>
+  </div>
+  <div>
+    <h1>CEIP Plurilingüe de Monforte</h1>
+    <span>Gestión de Horarios</span>
+  </div>
+  <div class="header-right">
+    <span class="school-year">Curso 2025–26</span>
+  </div>
+</header>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showPage('profesores')" id="tab-profesores">
+    <span class="nav-icon">👤</span><span class="nav-label"> Profesorado</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('guardias')" id="tab-guardias">
+    <span class="nav-icon">🛡️</span><span class="nav-label"> Guardias</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('transporte')" id="tab-transporte">
+    <span class="nav-icon">🚌</span><span class="nav-label"> Transporte</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('alumnado')" id="tab-alumnado">
+    <span class="nav-icon">🎒</span><span class="nav-label"> Alumnado</span>
+  </button>
+</nav>
+
+<!-- ===== PAGE: PROFESORES ===== -->
+<div class="page active" id="page-profesores">
+  <h2 class="section-title">Horario del profesorado</h2>
+  <p class="section-sub">Selecciona un profesor/a para ver su horario semanal</p>
+
+  <div class="edit-bar">
+    <button class="btn btn-primary" id="edit-toggle-btn" onclick="toggleEdit()">✏️ Editar horario</button>
+    <button class="btn btn-success" id="save-btn" onclick="saveChanges()" style="display:none">💾 Guardar cambios</button>
+    <button class="btn btn-secondary" id="cancel-btn" onclick="cancelEdit()" style="display:none">✖ Cancelar</button>
+    <span class="edit-mode-badge" id="edit-badge">MODO EDICIÓN</span>
+    <span class="edit-hint" id="edit-hint"></span>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="teacher-search" type="text" placeholder="Buscar profesor/a..." oninput="filterTeachers(this.value)">
+  </div>
+
+  <div id="teacher-groups"></div>
+
+  <div id="schedule-container">
+    <div class="empty-state">
+      <div class="empty-state-icon">📅</div>
+      <p>Selecciona un profesor/a arriba para ver su horario</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE: GUARDIAS ===== -->
+<div class="page" id="page-guardias">
+  <h2 class="section-title">Guardias</h2>
+  <p class="section-sub">Distribución de guardias por sesión y día</p>
+  <div class="card">
+    <div class="scroll-hint" style="padding:.4rem 1rem .1rem">← desliza para ver todos los días →</div>
+    <div class="schedule-wrap">
+      <table class="guardias-table" id="guardias-table"></table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE: TRANSPORTE ===== -->
+<div class="page" id="page-transporte">
+  <h2 class="section-title">Vigilancia de Transporte</h2>
+  <p class="section-sub">Asignación de profesores por zona de recogida, cada día</p>
+  <div class="transport-grid" id="transport-grid"></div>
+</div>
+
+<!-- ===== PAGE: ALUMNADO ===== -->
+<div class="page" id="page-alumnado">
+  <h2 class="section-title">Horario del alumnado</h2>
+  <p class="section-sub">Selecciona un curso para ver su horario semanal con materia y profesorado</p>
+
+  <div class="class-edit-bar">
+    <button class="btn btn-primary" id="class-edit-toggle-btn" onclick="toggleClassEdit()">✏️ Editar horario</button>
+    <button class="btn btn-success"   id="class-save-btn"   onclick="saveClassChanges()" style="display:none">💾 Guardar cambios</button>
+    <button class="btn btn-secondary" id="class-cancel-btn" onclick="cancelClassEdit()"  style="display:none">✖ Cancelar</button>
+    <span class="edit-mode-badge" id="class-edit-badge">MODO EDICIÓN</span>
+    <span class="edit-hint" id="class-edit-hint"></span>
+  </div>
+
+  <div class="course-level-tabs" id="course-level-tabs">
+    <button class="level-btn active" onclick="filterLevel('infantil')">🌱 Infantil</button>
+    <button class="level-btn" onclick="filterLevel('primaria')">📚 Primaria</button>
+    <button class="level-btn" onclick="filterLevel('all')">Todos</button>
+  </div>
+
+  <div class="course-grid" id="course-grid"></div>
+
+  <div id="class-schedule-container">
+    <div class="empty-state">
+      <div class="empty-state-icon">🎒</div>
+      <p>Selecciona un curso arriba para ver su horario</p>
+    </div>
+  </div>
+</div>
+
+<!-- RENAME MODAL -->
+<div class="modal-overlay" id="rename-modal" onclick="if(event.target===this)closeRenameModal()">
+  <div class="modal">
+    <h3>✏️ Cambiar nombre</h3>
+    <p class="modal-sub" id="modal-sub">Profesor/a original: <strong id="modal-original-name"></strong></p>
+    <div class="modal-field">
+      <label>Nombre actual / sustituto</label>
+      <input class="modal-input" id="modal-name-input" type="text" placeholder="Nombre del sustituto/a..."
+             onkeydown="if(event.key==='Enter')saveRename(); if(event.key==='Escape')closeRenameModal()">
+      <span class="modal-restore" onclick="restoreOriginalName()">↩ Restaurar nombre original</span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeRenameModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveRename()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast">✅ Cambios guardados correctamente</div>
+
+<script>
+// ========== DATA ==========
+const SESSIONS = ['1ª','2ª','3ª','4ª','5ª'];
+const DAYS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+
+const TEACHER_FULL_NAMES = {
+  'Silvia 3': 'Silvia (Infantil 3a)',
+  'Cris 4a': 'Cristina (Infantil 4a)',
+  'Sonia F': 'Sonia F. (Infantil 5a)',
+  'Isa': 'Isa (Apoyo Infantil)',
+  'Teresa': 'Teresa',
+  'Silvia L': 'Silvia López (1ºA)',
+  'Arancha': 'Arancha (1ºB)',
+  'Bea AL': 'Bea AL (2ºA)',
+  'Ana Arm': 'Ana Armesto (2ºB)',
+  'Ada': 'Ada (3ºA)',
+  'Montse': 'Montse (3ºB)',
+  'Ana J': 'Ana Jato (4ºA)',
+  'Rocío': 'Rocío (4ºB)',
+  'Noelia': 'Noelia',
+  'Caty': 'Caty (5ºA)',
+  'Bea R.': 'Bea Rodríguez (5ºB)',
+  'María Pr': 'María Prieto (6ºA)',
+  'Cris M': 'Cris Meijome (6ºB)',
+  'DIEGO': 'Diego (Inglés)',
+  'ÓSCAR': 'Óscar (EF)',
+  'RICHI': 'Richi (EF)',
+  'MIKEL': 'Mikel (Música)',
+  'SONIA': 'Sonia (PT Preferente)',
+  'Mª LUZ': 'Mª Luz (PT Preferente)',
+  'SABELA': 'Sabela (PT Preferente)',
+  'VANESA': 'Vanesa (PT Preferente)',
+  'LUCAS': 'Lucas (AL)',
+  'RUBÉN': 'Rubén (PT)',
+  'MARTA': 'Marta (Orientadora)',
+  'RELI': 'Religión'
+};
+
+let teacherData = {
+  'Silvia 3': {Lunes:{'1ª':'3a','2ª':'3a','3ª':'3a','4ª':'G','5ª':'3a'},Martes:{'1ª':'3a','2ª':'3a','3ª':'3a','4ª':'G / Ap','5ª':'3a'},Miércoles:{'1ª':'4a','2ª':'3a','3ª':'3a','4ª':'4a','5ª':'3a'},Jueves:{'1ª':'3a','2ª':'3a','3ª':'3a','4ª':'LIBRE','5ª':'LIBRE'},Viernes:{'1ª':'3a','2ª':'3a','3ª':'3a'}},
+  'Cris 4a': {Lunes:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'4a','4ª':'4a','5ª':'4a'},Martes:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'4a','4ª':'G / Ap','5ª':'4a'},Miércoles:{'1ª':'4a','2ª':'4a','3ª':'4a','4ª':'4a','5ª':'4a'},Jueves:{'1ª':'RELI','2ª':'4a','3ª':'4a','4ª':'4a','5ª':'4a'},Viernes:{'1ª':'4a','2ª':'G / Ap','3ª':'4a'}},
+  'Sonia F': {Lunes:{'1ª':'5a','2ª':'5a','3ª':'G / Ap','4ª':'5a','5ª':'5a'},Martes:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'LIBRE','4ª':'5a','5ª':'G / Ap'},Miércoles:{'1ª':'5a','2ª':'5a','3ª':'5a','4ª':'5a','5ª':'5a'},Jueves:{'1ª':'5a','2ª':'5a','3ª':'5a','4ª':'5a','5ª':'5a'},Viernes:{'1ª':'5a','2ª':'5a','3ª':'G / Ap'}},
+  'Isa': {Lunes:{'1ª':'3 años','2ª':'5 años','3ª':'5 años','4ª':'Secre','5ª':'4 años'},Martes:{'1ª':'3 años','2ª':'PC 5a','3ª':'5 años','4ª':'Secre','5ª':'Secre'},Miércoles:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'LIBRE','4ª':'LIBRE','5ª':'4 años'},Jueves:{'1ª':'Secre','2ª':'Secre','3ª':'Secre','4ª':'Secre','5ª':'5 años'},Viernes:{'1ª':'Secre','2ª':'Secre','3ª':'4 años'}},
+  'Teresa': {Lunes:{'1ª':'','2ª':'MATES','3ª':'','4ª':'','5ª':''},Martes:{'1ª':'','2ª':'MATES','3ª':'','4ª':'','5ª':''},Miércoles:{'1ª':'','2ª':'','3ª':'MATES','4ª':'','5ª':''},Jueves:{'1ª':'','2ª':'MATES','3ª':'','4ª':'','5ª':''},Viernes:{'1ª':'','2ª':'MATES','3ª':''}},
+  'Silvia L': {Lunes:{'1ª':'1ºA','2ª':'1ºA','3ª':'1ºA','4ª':'Guardia/Apoyo','5ª':'1ºA'},Martes:{'1ª':'1ºA','2ª':'1ºA','3ª':'1ºA','4ª':'Biblioteca','5ª':'1ºA'},Miércoles:{'1ª':'Guardia/Apoyo','2ª':'1ºA','3ª':'Biblioteca','4ª':'1ºA','5ª':'1ºA'},Jueves:{'1ª':'1ºA','2ª':'1ºA','3ª':'1ºA','4ª':'1ºA','5ª':'1ºA'},Viernes:{'1ª':'Plástica 1ºB','2ª':'LIBRE','3ª':'LIBRE'}},
+  'Arancha': {Lunes:{'1ª':'1º B','2ª':'1º B','3ª':'Gardas','4ª':'LIBRE','5ª':'LIBRE'},Martes:{'1ª':'1º B','2ª':'Inglés 1ºB','3ª':'3ºB','4ª':'Coord. CICLO','5ª':'3ºA'},Miércoles:{'1ª':'1º B','2ª':'1º B','3ª':'Inglés 1ºA','4ª':'3ºA','5ª':'3ºB'},Jueves:{'1ª':'1º B','2ª':'1º B','3ª':'1º B','4ª':'3ºA','5ª':'3ºB'},Viernes:{'1ª':'Plástica 1ºA','2ª':'Inglés 1ºA','3ª':'Inglés 1ºB'}},
+  'Bea AL': {Lunes:{'1ª':'2ºA','2ª':'2ºA','3ª':'2ºA','4ª':'2ºA','5ª':'2ºA'},Martes:{'1ª':'2ºA','2ª':'2ºA','3ª':'PC 2ºA','4ª':'PC 1ºA','5ª':'2ºA'},Miércoles:{'1ª':'2ºA','2ª':'2ºA','3ª':'G / Ap','4ª':'G / Ap','5ª':'2ºA'},Jueves:{'1ª':'2ºA','2ª':'2ºA','3ª':'2ºA','4ª':'2ºA','5ª':'G / Ap'},Viernes:{'1ª':'2ºA','2ª':'LIBRE','3ª':'LIBRE'}},
+  'Ana Arm': {Lunes:{'1ª':'2ºB','2ª':'2ºB','3ª':'2ºB','4ª':'G / Ap','5ª':'2ºB'},Martes:{'1ª':'2ºB','2ª':'2ºB','3ª':'PC 1ºB','4ª':'2ºB','5ª':'2ºB'},Miércoles:{'1ª':'2ºB','2ª':'2ºB','3ª':'2ºB','4ª':'2ºB','5ª':'2ºB'},Jueves:{'1ª':'2ºB','2ª':'LIBRE','3ª':'LIBRE','4ª':'2ºB','5ª':'2ºB'},Viernes:{'1ª':'2ºB','2ª':'G / Ap','3ª':'2ºB'}},
+  'Ada': {Lunes:{'1ª':'3ºA','2ª':'3ºA','3ª':'G / Ap','4ª':'3ºA','5ª':'3ºA'},Martes:{'1ª':'3ºA','2ª':'3ºA','3ª':'Coord Ciclo','4ª':'3ºA','5ª':'Ap / G'},Miércoles:{'1ª':'3ºA','2ª':'3ºA','3ª':'Plásti 3ºB','4ª':'3ºA','5ª':'3ºA'},Jueves:{'1ª':'3ºA','2ª':'3ºA','3ª':'3ºA','4ª':'BIBLIO','5ª':'3ºA'},Viernes:{'1ª':'3ºA','2ª':'3ºA','3ª':'3ºA'}},
+  'Montse': {Lunes:{'1ª':'Galego','2ª':'Lengua','3ª':'Mates','4ª':'G / Ap','5ª':'Naturais'},Martes:{'1ª':'Galego','2ª':'Lengua','3ª':'G / Ap','4ª':'Sociais','5ª':'Naturais'},Miércoles:{'1ª':'Galego','2ª':'Lengua','3ª':'LIBRE','4ª':'Mates','5ª':'G / Ap'},Jueves:{'1ª':'Mates','2ª':'Sociais','3ª':'Mates','4ª':'BIBLIO','5ª':'G'},Viernes:{'1ª':'Mates','2ª':'Naturais','3ª':'PC 3ºB'}},
+  'Ana J': {Lunes:{'1ª':'4ºA','2ª':'4ºA','3ª':'4ºA','4ª':'PC 4ºA','5ª':'4ºA'},Martes:{'1ª':'4ºA','2ª':'4ºA','3ª':'4ºA','4ª':'4ºA','5ª':'4ºA'},Miércoles:{'1ª':'4ºA','2ª':'4ºA','3ª':'4ºA','4ª':'4ºA','5ª':'LIBRE'},Jueves:{'1ª':'BIBLIO','2ª':'4ºA','3ª':'4ºA','4ª':'BIBLIO','5ª':'4ºA'},Viernes:{'1ª':'4ºA','2ª':'BIBLIO','3ª':'4ºA'}},
+  'Rocío': {Lunes:{'1ª':'4º B','2ª':'4º B','3ª':'4º B','4ª':'','5ª':'4º B'},Martes:{'1ª':'4º B','2ª':'4º B','3ª':'','4ª':'','5ª':'4º B'},Miércoles:{'1ª':'4º B','2ª':'4º B','3ª':'','4ª':'4º B','5ª':'4º B'},Jueves:{'1ª':'4º B','2ª':'4º B','3ª':'','4ª':'Guardia','5ª':'4º B'},Viernes:{'1ª':'','2ª':'','3ª':''}},
+  'Noelia': {Lunes:{'1ª':'','2ª':'','3ª':'','4ª':'NATUS 1ºB','5ª':'G'},Martes:{'1ª':'','2ª':'','3ª':'','4ª':'4º B','5ª':'4º B'},Miércoles:{'1ª':'','2ª':'','3ª':'','4ª':'NATUS 1ºB','5ª':''},Jueves:{'1ª':'','2ª':'','3ª':'NATUS 1ºB','4ª':'','5ª':''},Viernes:{'1ª':'G','2ª':'Plástica 4ºA','3ª':'Plástica 4ºB'}},
+  'Caty': {Lunes:{'1ª':'5ºA','2ª':'5ºA','3ª':'5ºA','4ª':'5ºA','5ª':'5ºA'},Martes:{'1ª':'5ºA','2ª':'5ºA','3ª':'Ap / G','4ª':'Ap / G','5ª':'5ºA'},Miércoles:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'LIBRE','4ª':'LIBRE','5ª':'Ap / G'},Jueves:{'1ª':'5ºA','2ª':'5ºA','3ª':'5ºA','4ª':'BIBLIO','5ª':'PC 4ºB'},Viernes:{'1ª':'PC 6ºA','2ª':'5ºB','3ª':'5ºA'}},
+  'Bea R.': {Lunes:{'1ª':'Ing 6ºB','2ª':'5ºB','3ª':'5ºB','4ª':'Ing 6ºA','5ª':'Apoyos'},Martes:{'1ª':'Ing 6ºB','2ª':'5ºB','3ª':'Gardas/apoyos','4ª':'Gardas/apoyos','5ª':'Apoyos'},Miércoles:{'1ª':'5ºB','2ª':'5ºB','3ª':'5ºB','4ª':'Ap / G','5ª':'Apoyos'},Jueves:{'1ª':'5ºB','2ª':'5ºB','3ª':'5ºB','4ª':'5ºB','5ª':'Ap / G'},Viernes:{'1ª':'5ºB','2ª':'Apoyos','3ª':'Apoyos'}},
+  'María Pr': {Lunes:{'1ª':'G','2ª':'6ºA','3ª':'6ºA','4ª':'Plást 2ºB','5ª':'6ºA'},Martes:{'1ª':'Ing 6ºA','2ª':'6ºA','3ª':'6ºA','4ª':'6ºA','5ª':'6ºA'},Miércoles:{'1ª':'Ap / G','2ª':'Ap / G','3ª':'LIBRE','4ª':'Ap / G','5ª':'LIBRE'},Jueves:{'1ª':'6ºA','2ª':'6ºA','3ª':'6ºA','4ª':'6ºA','5ª':'6ºA'},Viernes:{'1ª':'6ºA','2ª':'6ºA','3ª':'6ºA'}},
+  'Cris M': {Lunes:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'6ºB','4ª':'6ºB','5ª':'6ºB'},Martes:{'1ª':'6ºB','2ª':'Radio','3ª':'6ºB','4ª':'6ºB','5ª':'6ºB'},Miércoles:{'1ª':'6ºB','2ª':'6ºB','3ª':'6ºB','4ª':'G / Ap','5ª':'6ºB'},Jueves:{'1ª':'Radio','2ª':'6ºB','3ª':'6ºB','4ª':'6ºB','5ª':'6ºB'},Viernes:{'1ª':'6ºB','2ª':'Prox. Comp','3ª':'6ºB'}},
+  'DIEGO': {Lunes:{'1ª':'4a','2ª':'Gardas','3ª':'5a','4ª':'LIBRE','5ª':'LIBRE'},Martes:{'1ª':'5ºB ','2ª':'4ºA','3ª':'5ºA','4ª':'3a','5ª':'Coord'},Miércoles:{'1ª':'Coord','2ª':'4ºA','3ª':'5ºA','4ª':'2ºA','5ª':'4º B'},Jueves:{'1ª':'5ºB ','2ª':'5ºA','3ª':'4ºA','4ª':'2ºB','5ª':'4º B'},Viernes:{'1ª':'APOYOS','2ª':'2ºB','3ª':'4º B'}},
+  'ÓSCAR': {Lunes:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'LIBRE','4ª':'3º B','5ª':'4ºB'},Martes:{'1ª':'4ºA','2ª':'GARDA','3ª':'3ºA','4ª':'2ºA','5ª':'2º B'},Miércoles:{'1ª':'Sindicato','2ª':'Sindicato','3ª':'Sindicato','4ª':'Sindicato','5ª':'Sindicato'},Jueves:{'1ª':'4ºB','2ª':'3ºB','3ª':'COMEDOR','4ª':'EDIXGAL','5ª':'3ºA'},Viernes:{'1ª':'4ºA','2ª':'COMEDOR','3ª':'G / Ap'}},
+  'RICHI': {Lunes:{'1ª':'6ºA','2ª':'4a','3ª':'1ºB','4ª':'1ºA','5ª':'3a'},Martes:{'1ª':'POLOS','2ª':'5ºB','3ª':'1ºB','4ª':'Gardas','5ª':'5a'},Miércoles:{'1ª':'1ºA','2ª':'5ºB','3ª':'6ºA','4ª':'6ºB','5ª':'5ºA'},Jueves:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'LIBRE','4ª':'POLOS / PD','5ª':'3a'},Viernes:{'1ª':'POLOS','2ª':'6ºB','3ª':'5ºA'}},
+  'MIKEL': {Lunes:{'1ª':'Mates','2ª':'6ºB','3ª':'3ºA','4ª':'GUARDIA','5ª':'Plas 5º B'},Martes:{'1ª':'5a','2ª':'6ºA','3ª':'Mates','4ª':'4a','5ª':'5º B'},Miércoles:{'1ª':'5ºA','2ª':'Plásti 5ºA','3ª':'1ºB','4ª':'Mates','5ª':'2ºA'},Jueves:{'1ª':'LIBRE','2ª':'LIBRE','3ª':'LIBRE','4ª':'3a','5ª':'2ºB'},Viernes:{'1ª':'4ºA','2ª':'4ºB','3ª':'1ºA'}},
+  'SONIA': {Lunes:{'1ª':'Hugo','2ª':'Hugo','3ª':'Hugo','4ª':'Hugo','5ª':'Hugo'},Martes:{'1ª':'Hugo','2ª':'LIBRE','3ª':'Hugo','4ª':'LIBRE','5ª':'LIBRE'},Miércoles:{'1ª':'Hugo','2ª':'Hugo','3ª':'Hugo','4ª':'Hugo','5ª':'Hugo'},Jueves:{'1ª':'Hugo','2ª':'Hugo','3ª':'Hugo','4ª':'Hugo','5ª':'Hugo'},Viernes:{'1ª':'Hugo','2ª':'Hugo','3ª':'Hugo'}},
+  'Mª LUZ': {Lunes:{'1ª':'2ºB','2ª':'2ºB','3ª':'2ºB','4ª':'2ºB','5ª':'2ºB'},Martes:{'1ª':'2ºB','2ª':'2ºB','3ª':'EF','4ª':'2ºB','5ª':'2ºB'},Miércoles:{'1ª':'2ºB','2ª':'2ºB','3ª':'2ºB','4ª':'2ºB','5ª':'2ºB'},Jueves:{'1ª':'2ºB','2ª':'2ºB','3ª':'2ºB','4ª':'2ºB','5ª':'2ºB'},Viernes:{'1ª':'2ºB','2ª':'2ºB','3ª':'EF'}},
+  'SABELA': {Lunes:{'1ª':'Prefe','2ª':'Prefe','3ª':'Noel','4ª':'Noel','5ª':'Noel'},Martes:{'1ª':'LIBRE','2ª':'Noel','3ª':'Noel','4ª':'Noel','5ª':'Noel'},Miércoles:{'1ª':'Noel','2ª':'Noel','3ª':'Noel','4ª':'Noel','5ª':'Noel'},Jueves:{'1ª':'Noel','2ª':'Noel','3ª':'Noel','4ª':'Noel','5ª':'LIBRE'},Viernes:{'1ª':'Noel','2ª':'Noel','3ª':'Noel'}},
+  'VANESA': {Lunes:{'1ª':'Prefe','2ª':'Prefe','3ª':'Prefe','4ª':'LIBRE','5ª':'LIBRE'},Martes:{'1ª':'Prefe','2ª':'Prefe','3ª':'Prefe','4ª':'Prefe','5ª':'Prefe'},Miércoles:{'1ª':'Prefe','2ª':'Prefe','3ª':'Prefe','4ª':'Prefe','5ª':'Prefe'},Jueves:{'1ª':'Prefe','2ª':'Prefe','3ª':'Prefe','4ª':'Prefe','5ª':'Prefe'},Viernes:{'1ª':'Prefe','2ª':'Prefe','3ª':'Prefe'}},
+  'LUCAS': {Lunes:{'1ª':'','2ª':'','3ª':'','4ª':'','5ª':''},Martes:{'1ª':'','2ª':'','3ª':'','4ª':'','5ª':''},Miércoles:{'1ª':'','2ª':'LIBRE','3ª':'','4ª':'','5ª':''},Jueves:{'1ª':'','2ª':'','3ª':'','4ª':'LIBRE','5ª':'LIBRE'},Viernes:{'1ª':'','2ª':'','3ª':'LIBRE'}},
+  'RUBÉN': {Lunes:{'1ª':'PT','2ª':'PT','3ª':'PT','4ª':'PT','5ª':'PT'},Martes:{'1ª':'PT','2ª':'PT','3ª':'PT','4ª':'PT','5ª':'PT'},Miércoles:{'1ª':'PT','2ª':'LIBRE','3ª':'PT','4ª':'PT','5ª':'PT'},Jueves:{'1ª':'PT','2ª':'PT','3ª':'PT','4ª':'PT','5ª':'PT'},Viernes:{'1ª':'PT','2ª':'PT','3ª':'LIBRE'}},
+  'MARTA': {Lunes:{'1ª':'Orienta','2ª':'Orienta','3ª':'Orienta','4ª':'Orienta','5ª':'Orienta'},Martes:{'1ª':'Orienta','2ª':'Orienta','3ª':'Orienta','4ª':'Orienta','5ª':'Orienta'},Miércoles:{'1ª':'Orienta','2ª':'Orienta','3ª':'Orienta','4ª':'Orienta','5ª':'Orienta'},Jueves:{'1ª':'Orienta','2ª':'Orienta','3ª':'Orienta','4ª':'Orienta','5ª':'Orienta'},Viernes:{'1ª':'Orienta','2ª':'Orienta','3ª':'Orienta'}},
+  'RELI': {Lunes:{'1ª':'','2ª':'','3ª':'','4ª':'4ºA','5ª':'5ºA'},Martes:{'1ª':'GUARDIA','2ª':'5a','3ª':'2ºA','4ª':'1ºA','5ª':'1ºB'},Miércoles:{'1ª':'GUARDIA','2ª':'6ºB','3ª':'GUARDIA','4ª':'2ºB','5ª':'5ºB'},Jueves:{'1ª':'GUARDIA','2ª':'GUARDIA','3ª':'4a','4ª':'GUARDIA','5ª':'GUARDIA'},Viernes:{'1ª':'4ºB','2ª':'3a','3ª':'6ºA'}}
+};
+
+const guardiasData = {
+  '1ª':{Lunes:['María Pr','Isa 3a','Teresa','PT','AL'],Martes:['RELI','Richi (C)','Teresa','Isa 3a','PT'],Miércoles:['RELI','Silvia L (B)','Diego (C)','Teresa','PT'],Jueves:['Rocío','CrisM (R)','Teresa','Isa 3a','PT'],Viernes:['Montse','Diego (A)','Ana J (B)','Richi (C)','Isa 3a']},
+  '2ª':{Lunes:['Diego','Isa 5a','Teresa','PT','AL'],Martes:['Oscar','CrisM (R)','Teresa','PT','*Bea R*(LD)'],Miércoles:['Bea R','Ana J (B)','Teresa','AL','*Rubén*(LD)'],Jueves:['Caty','Montse (B)','Isa 4a','Teresa','PT'],Viernes:['Ana Arm','Bea AL (A)','CrisM (R)','Oscar (C)','Isa 4a']},
+  '3ª':{Lunes:['Arancha','Ada (A)','Sonia F (A)','Isa 5a','Teresa'],Martes:['Caty','Montse (B)','Ada (C)','Isa','Teresa'],Miércoles:['RELI','Mº Prieto (A)','Silvia L (B)','Teresa','PT'],Jueves:['Ana J','Oscar (C)','Isa','Teresa','PT'],Viernes:['Noelia','Mª Prieto (A)','Ana J (B)','Óscar (C)','Isa']},
+  '4ª':{Lunes:['Mikel','Silvia L (B)','Montse (B)','Isa','PT'],Martes:['Richi','Silvia Inf (A)','Cris Inf (A)','Silvia L (B)','Arancha (C)'],Miércoles:['CrisM','BEA AL (A)','Isa 3a','PT','AL'],Jueves:['RELI','Richi (C)','Óscar','Isa','PT'],Viernes:['Cris Inf','Ana Arm (A)','Ana J (B)','Isa','AL']},
+  '5ª':{Lunes:['Silvia Inf','Ana Arm (A)','Isa 4a','Teresa','PT'],Martes:['Ada','Sonia F. (A)','Bea R (A)','Diego (C)','Teresa'],Miércoles:['Bea Al','Isa 4a','Teresa','PT','AL'],Jueves:['RELI','Montse (B)','Isa 5a','Teresa','PT'],Viernes:['Sonia F','Bea R (A)','Isa 4a','Teresa','AL']}
+};
+
+const transportData = {
+  'Entrada Infantil':{Lunes:'Isa',Martes:'Isa',Miércoles:'SABELA',Jueves:'Isa',Viernes:'Isa'},
+  'Aula 3 años':{Lunes:'MARI LUZ',Martes:'DIEGO',Miércoles:'MARI LUZ',Jueves:'SABELA',Viernes:'DIEGO'},
+  'Aula 5 años':{Lunes:'Sonia Inf',Martes:'Sonia Montaña',Miércoles:'Sonia Inf',Jueves:'Sonia Inf',Viernes:'Sonia Inf'},
+  'Aula 4 años':{Lunes:'MARTA',Martes:'MARI LUZ',Miércoles:'MARTA',Jueves:'MARTA',Viernes:'MARI LUZ'},
+  'Pasillos Planta 1 (Bea)':{Lunes:'Bea 2º',Martes:'Bea 2º',Miércoles:'Bea 2º',Jueves:'Bea 2º',Viernes:'Bea 2º'},
+  'Pasillos Planta 1 (Silvia)':{Lunes:'Silvia L 1º',Martes:'Silvia L 1º',Miércoles:'Silvia L 1º',Jueves:'Silvia L 1º',Viernes:'Silvia L 1º'},
+  'Pasillos Planta 2 (Bea R)':{Lunes:'Bea R 5º',Martes:'Bea R 5º',Miércoles:'Bea R 5º',Jueves:'Bea R 5º',Viernes:'Bea R 5º'},
+  'Pasillos Planta 2 (Caty)':{Lunes:'Caty 5º',Martes:'Caty 5º',Miércoles:'MIKEL',Jueves:'Caty 5º',Viernes:'Caty 5º'},
+  'Hall':{Lunes:'MIKEL',Martes:'OSCAR',Miércoles:'OSCAR',Jueves:'OSCAR',Viernes:'OSCAR'},
+  'Entrada trasera':{Lunes:'RICHI',Martes:'RICHI',Miércoles:'RICHI',Jueves:'DIEGO',Viernes:'RICHI'},
+  'Buses':{Lunes:'Rubén',Martes:'Rubén',Miércoles:'Rubén',Jueves:'Rubén',Viernes:'Rubén'},
+  'Puerta Principal':{Lunes:'TERESA',Martes:'TERESA',Miércoles:'TERESA',Jueves:'TERESA',Viernes:'Sonia M.'},
+  'Puerta con Sonia':{Lunes:'Sonia M.',Martes:'',Miércoles:'Sonia M.',Jueves:'Sonia M.',Viernes:''}
+};
+
+// ========== STATE ==========
+let selectedTeacher = null;
+let editMode = false;
+let pendingChanges = {};
+
+// ========== INIT ==========
+function init() {
+  renderTeacherGroups();
+  renderGuardias();
+  renderTransport();
+}
+
+// ========== NAV ==========
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// ========== TEACHER GROUPS ==========
+const TEACHER_GROUPS = {
+  infantil: {
+    label: '🌱 Infantil',
+    cls: 'infantil',
+    teachers: ['Silvia 3','Cris 4a','Sonia F','Isa']
+  },
+  primaria: {
+    label: '📚 Primaria',
+    cls: 'primaria',
+    teachers: ['Teresa','Silvia L','Arancha','Bea AL','Ana Arm','Ada','Montse','Ana J','Rocío','Noelia','Caty','Bea R.','María Pr','Cris M']
+  },
+  especialistas: {
+    label: '⭐ Especialistas',
+    cls: 'espec',
+    teachers: ['DIEGO','ÓSCAR','RICHI','MIKEL','SONIA','Mª LUZ','SABELA','VANESA','LUCAS','RUBÉN','MARTA','RELI']
+  }
+};
+
+// Display names (current, may be substitutes)
+let teacherDisplayNames = {};
+// Original names (from data)
+const teacherOriginalNames = {};
+Object.values(TEACHER_GROUPS).forEach(g => g.teachers.forEach(t => {
+  teacherDisplayNames[t] = t;
+  teacherOriginalNames[t] = t;
+}));
+
+function getDisplayName(key) { return teacherDisplayNames[key] || key; }
+function isSubstitute(key)   { return getDisplayName(key) !== teacherOriginalNames[key]; }
+
+// ========== TEACHERS ==========
+function renderTeacherGroups(filter) {
+  const wrap = document.getElementById('teacher-groups');
+  const q = (filter || '').toLowerCase();
+
+  wrap.innerHTML = Object.entries(TEACHER_GROUPS).map(([gKey, group]) => {
+    const teachers = group.teachers.filter(t =>
+      !q ||
+      t.toLowerCase().includes(q) ||
+      getDisplayName(t).toLowerCase().includes(q) ||
+      (TEACHER_FULL_NAMES[t] || '').toLowerCase().includes(q)
+    );
+    if (!teachers.length) return '';
+
+    const chips = teachers.map(t => {
+      const display = getDisplayName(t);
+      const isSub   = isSubstitute(t);
+      const fullSub = TEACHER_FULL_NAMES[t] || '';
+      const isSelected = selectedTeacher === t;
+      return `
+        <button class="teacher-chip ${group.cls} ${isSelected ? 'selected' : ''}"
+                onclick="selectTeacher('${t}')">
+          <span class="chip-name">${display}</span>
+          ${isSub
+            ? `<span class="chip-sub">(${teacherOriginalNames[t]})</span>
+               <span class="chip-subst">Sustituto/a</span>`
+            : (fullSub ? `<span class="chip-sub">${fullSub.replace(t,'').replace(/[()]/g,'').trim()}</span>` : '')
+          }
+        </button>`;
+    }).join('');
+
+    return `
+      <div class="teacher-group">
+        <div class="teacher-group-header">
+          <span class="group-label ${group.cls}">${group.label}</span>
+          <span class="group-divider"></span>
+        </div>
+        <div class="teacher-grid">${chips}</div>
+      </div>`;
+  }).join('');
+}
+
+function filterTeachers(q) {
+  renderTeacherGroups(q);
+}
+
+function selectTeacher(name) {
+  if (editMode) cancelEdit();
+  selectedTeacher = name;
+  renderTeacherGroups(document.getElementById('teacher-search').value);
+  renderSchedule(name);
+}
+
+function getCellClass(val) {
+  if (!val) return 'cell-empty';
+  const v = val.toLowerCase();
+  if (v === 'libre') return 'cell-content cell-libre';
+  if (v.includes('guardia') || v.includes('g / ap') || v.includes('garda') || v === 'g') return 'cell-content cell-guardia';
+  if (v.includes('biblioteca') || v.includes('biblio')) return 'cell-content cell-biblio';
+  if (v.includes('apoyo') || v.includes('ap / g') || v.includes('coord') || v.includes('radio') || v.includes('secre') || v.includes('prefe') || v.includes('pt') || v.includes('polos') || v.includes('pluri') || v.includes('edix') || v.includes('tic')) return 'cell-content cell-apoyo';
+  if (/\d/.test(val) || val.toLowerCase().includes('años') || val.toLowerCase().includes('mates') || val.toLowerCase().includes('galego') || val.toLowerCase().includes('lengua') || val.toLowerCase().includes('inglés') || val.toLowerCase().includes('ing ')) return 'cell-content cell-class';
+  return 'cell-content cell-other';
+}
+
+function renderSchedule(teacher) {
+  const data = teacherData[teacher];
+  if (!data) return;
+
+  const rows = SESSIONS.map(sess => {
+    const cells = DAYS.map(day => {
+      const val = (data[day] && data[day][sess]) ? data[day][sess] : '';
+      const cls = getCellClass(val);
+      if (editMode) {
+        return `<td class="editable" data-teacher="${teacher}" data-day="${day}" data-session="${sess}" onclick="startEdit(this)">
+          ${val ? `<span class="${cls}">${val}</span>` : `<span class="cell-empty">—</span>`}
+        </td>`;
+      }
+      return `<td>${val ? `<span class="${cls}">${val}</span>` : `<span class="cell-empty">—</span>`}</td>`;
+    }).join('');
+    return `<tr><td class="session-label">${sess}</td>${cells}</tr>`;
+  }).join('');
+
+  const display  = getDisplayName(teacher);
+  const isSub    = isSubstitute(teacher);
+  const fullName = TEACHER_FULL_NAMES[teacher] || '';
+
+  document.getElementById('schedule-container').innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <strong style="font-size:1.05rem">${display}${isSub ? `<span class="subst-tag">Sustituto/a</span>` : ''}</strong>
+          <div style="color:var(--ink3);font-size:.82rem;margin-top:.1rem">
+            ${isSub ? `Titular: ${teacherOriginalNames[teacher]} · ` : ''}${fullName}
+          </div>
+        </div>
+        <button class="rename-btn" onclick="openRenameModal('${teacher}')">✏️ Cambiar nombre</button>
+      </div>
+      <div class="scroll-hint">← desliza para ver todos los días →</div>
+      <div class="schedule-wrap">
+        <table class="schedule-table" id="sched-table">
+          <thead>
+            <tr>
+              <th>Sesión</th>
+              ${DAYS.map(d => `<th>${d}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+// ========== EDIT MODE ==========
+function toggleEdit() {
+  if (!selectedTeacher) { showToast('⚠️ Selecciona primero un profesor/a', 'warn'); return; }
+  editMode = true;
+  pendingChanges = {};
+  document.getElementById('edit-toggle-btn').style.display = 'none';
+  document.getElementById('save-btn').style.display = '';
+  document.getElementById('cancel-btn').style.display = '';
+  document.getElementById('edit-badge').classList.add('visible');
+  document.getElementById('edit-hint').textContent = 'Haz clic en cualquier celda para editarla';
+  renderSchedule(selectedTeacher);
+}
+
+function cancelEdit() {
+  editMode = false;
+  pendingChanges = {};
+  document.getElementById('edit-toggle-btn').style.display = '';
+  document.getElementById('save-btn').style.display = 'none';
+  document.getElementById('cancel-btn').style.display = 'none';
+  document.getElementById('edit-badge').classList.remove('visible');
+  document.getElementById('edit-hint').textContent = '';
+  if (selectedTeacher) renderSchedule(selectedTeacher);
+}
+
+function saveChanges() {
+  // Apply pending changes
+  for (const key in pendingChanges) {
+    const [teacher, day, sess] = key.split('||');
+    if (!teacherData[teacher]) teacherData[teacher] = {};
+    if (!teacherData[teacher][day]) teacherData[teacher][day] = {};
+    teacherData[teacher][day][sess] = pendingChanges[key];
+  }
+  cancelEdit();
+  showToast('✅ Cambios guardados correctamente');
+}
+
+function startEdit(td) {
+  if (!editMode) return;
+  if (td.querySelector('input')) return; // already editing
+  const teacher = td.dataset.teacher;
+  const day = td.dataset.day;
+  const sess = td.dataset.session;
+  const current = (teacherData[teacher]?.[day]?.[sess]) || '';
+  td.innerHTML = `<input class="cell-input" value="${current}" 
+    onblur="commitEdit(this, '${teacher}', '${day}', '${sess}')"
+    onkeydown="if(event.key==='Enter')this.blur(); if(event.key==='Escape'){this.value='${current}';this.blur();}"
+    autofocus>`;
+  td.querySelector('input').focus();
+}
+
+function commitEdit(input, teacher, day, sess) {
+  const val = input.value.trim();
+  pendingChanges[`${teacher}||${day}||${sess}`] = val;
+  // Update cell display
+  const td = input.parentElement;
+  td.dataset.teacher = teacher;
+  td.dataset.day = day;
+  td.dataset.session = sess;
+  const cls = getCellClass(val);
+  td.innerHTML = val ? `<span class="${cls}">${val}</span>` : `<span class="cell-empty">—</span>`;
+  td.onclick = function(){ startEdit(this); };
+}
+
+// ========== RENAME / SUBSTITUTE ==========
+let renameTarget = null;
+
+function openRenameModal(teacherKey) {
+  renameTarget = teacherKey;
+  const orig = teacherOriginalNames[teacherKey];
+  const curr = getDisplayName(teacherKey);
+  document.getElementById('modal-original-name').textContent = orig;
+  document.getElementById('modal-name-input').value = curr === orig ? '' : curr;
+  document.getElementById('modal-name-input').placeholder = orig;
+  document.getElementById('rename-modal').classList.add('open');
+  setTimeout(() => document.getElementById('modal-name-input').focus(), 80);
+}
+
+function closeRenameModal() {
+  document.getElementById('rename-modal').classList.remove('open');
+  renameTarget = null;
+}
+
+function saveRename() {
+  if (!renameTarget) return;
+  const val = document.getElementById('modal-name-input').value.trim();
+  teacherDisplayNames[renameTarget] = val || teacherOriginalNames[renameTarget];
+  closeRenameModal();
+  renderTeacherGroups(document.getElementById('teacher-search').value);
+  if (selectedTeacher === renameTarget) renderSchedule(renameTarget);
+  showToast(val ? `✅ Nombre cambiado a "${val}"` : '✅ Nombre restaurado');
+}
+
+function restoreOriginalName() {
+  if (!renameTarget) return;
+  document.getElementById('modal-name-input').value = '';
+  document.getElementById('modal-name-input').placeholder = teacherOriginalNames[renameTarget];
+}
+
+// ========== GUARDIAS ==========
+function renderGuardias() {
+  const header = `<thead><tr><th>Sesión</th>${DAYS.map(d=>`<th>${d}</th>`).join('')}</tr></thead>`;
+  const body = SESSIONS.map(sess => {
+    const cells = DAYS.map(day => {
+      const names = (guardiasData[sess] && guardiasData[sess][day]) ? guardiasData[sess][day] : [];
+      return `<td>${names.map(n=>`<span class="guardia-name">${n}</span>`).join('')}</td>`;
+    }).join('');
+    return `<tr><td class="session-col">${sess}</td>${cells}</tr>`;
+  }).join('');
+  document.getElementById('guardias-table').innerHTML = header + `<tbody>${body}</tbody>`;
+}
+
+// ========== TRANSPORT ==========
+function renderTransport() {
+  const grid = document.getElementById('transport-grid');
+  const icons = {'Entrada Infantil':'🚪','Aula 3 años':'🧒','Aula 5 años':'👦','Aula 4 años':'👧','Hall':'🏛️','Buses':'🚌','Puerta Principal':'🚪','Entrada trasera':'🚪'};
+  grid.innerHTML = Object.entries(transportData).map(([zona, days]) => {
+    const icon = Object.entries(icons).find(([k]) => zona.toLowerCase().includes(k.toLowerCase()))?.[1] || '📍';
+    const rows = DAYS.map(day => {
+      const p = days[day] || '';
+      return p ? `<div class="transport-row"><span class="transport-day">${day.slice(0,3)}.</span><span class="transport-teacher">${p}</span></div>` : '';
+    }).filter(Boolean).join('');
+    return `
+      <div class="transport-card">
+        <div class="transport-card-header">${icon} ${zona}</div>
+        <div class="transport-card-body">${rows || '<span style="color:var(--ink3);font-size:.8rem">Sin asignación</span>'}</div>
+      </div>`;
+  }).join('');
+}
+
+// ========== CLASS / ALUMNADO DATA ==========
+// Each cell: {s: 'Materia', t: 'Profesor'}
+const classData = {
+  '3 años': { level:'infantil', tutor:'Silvia', schedule:{
+    '1ª':    {L:{s:'',t:'Silvia'},M:{s:'',t:'Silvia'},X:{s:'',t:'Silvia'},J:{s:'',t:'Silvia'},V:{s:'',t:'Silvia'}},
+    '2ª':    {L:{s:'',t:'Silvia'},M:{s:'',t:'Silvia'},X:{s:'',t:'Silvia'},J:{s:'',t:'Silvia'},V:{s:'Religión',t:''}},
+    '3ª':    {L:{s:'',t:'Silvia'},M:{s:'',t:'Silvia'},X:{s:'',t:'Silvia'},J:{s:'',t:'Silvia'},V:{s:'',t:'Silvia'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'',t:'Silvia'},M:{s:'Inglés',t:'Diego'},X:{s:'',t:'Silvia'},J:{s:'Música',t:'Mikel'},V:{s:'',t:'Silvia'}},
+    '5ª':    {L:{s:'Psicomotricidad',t:''},M:{s:'',t:'Silvia'},X:{s:'',t:'Silvia'},J:{s:'Psicomotricidad',t:''},V:{s:'',t:'Silvia'}},
+  }},
+  '4 años': { level:'infantil', tutor:'Cristina', schedule:{
+    '1ª':    {L:{s:'Inglés',t:'Diego'},M:{s:'',t:'Cristina'},X:{s:'',t:'Cristina'},J:{s:'',t:'Cristina'},V:{s:'',t:'Cristina'}},
+    '2ª':    {L:{s:'Psicomotricidad',t:''},M:{s:'',t:'Cristina'},X:{s:'',t:'Cristina'},J:{s:'',t:'Cristina'},V:{s:'',t:'Cristina'}},
+    '3ª':    {L:{s:'',t:'Cristina'},M:{s:'',t:'Cristina'},X:{s:'',t:'Cristina'},J:{s:'Religión',t:''},V:{s:'',t:'Cristina'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'',t:'Cristina'},M:{s:'Música',t:'Mikel'},X:{s:'',t:'Cristina'},J:{s:'',t:'Cristina'},V:{s:'Psicomotricidad',t:''}},
+    '5ª':    {L:{s:'',t:'Cristina'},M:{s:'',t:'Cristina'},X:{s:'',t:'Cristina'},J:{s:'',t:'Cristina'},V:{s:'',t:'Cristina'}},
+  }},
+  '5 años': { level:'infantil', tutor:'Sonia F.', schedule:{
+    '1ª':    {L:{s:'',t:'Sonia F.'},M:{s:'Música',t:'Mikel'},X:{s:'',t:'Sonia F.'},J:{s:'',t:'Sonia F.'},V:{s:'',t:'Sonia F.'}},
+    '2ª':    {L:{s:'',t:'Sonia F.'},M:{s:'Proyecto Comp.',t:'Isa'},X:{s:'',t:'Sonia F.'},J:{s:'',t:'Sonia F.'},V:{s:'',t:'Sonia F.'}},
+    '3ª':    {L:{s:'Inglés',t:'Diego'},M:{s:'Apoyo',t:'Isa'},X:{s:'',t:'Sonia F.'},J:{s:'',t:'Sonia F.'},V:{s:'',t:'Sonia F.'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'',t:'Sonia F.'},M:{s:'',t:'Sonia F.'},X:{s:'',t:'Sonia F.'},J:{s:'',t:'Sonia F.'},V:{s:'',t:'Sonia F.'}},
+    '5ª':    {L:{s:'',t:'Sonia F.'},M:{s:'Psicomotricidad',t:''},X:{s:'',t:'Sonia F.'},J:{s:'',t:'Sonia F.'},V:{s:'Psicomotricidad',t:''}},
+  }},
+  '1ºA': { level:'primaria', tutor:'Silvia L.', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Silvia L.'},M:{s:'Lengua',t:'Silvia L.'},X:{s:'Ed. Física',t:'Richi'},J:{s:'Naturais',t:'Silvia L.'},V:{s:'Galego',t:'Silvia L.'}},
+    '2ª':    {L:{s:'Matemáticas',t:'Silvia L.'},M:{s:'Matemáticas',t:'Silvia L.'},X:{s:'Matemáticas',t:'Silvia L.'},J:{s:'Matemáticas',t:'Silvia L.'},V:{s:'Matemáticas',t:'Silvia L.'}},
+    '3ª':    {L:{s:'Sociais',t:'Silvia L.'},M:{s:'Lengua',t:'Silvia L.'},X:{s:'Inglés',t:'Arancha'},J:{s:'Lengua',t:'Silvia L.'},V:{s:'Inglés',t:'Arancha'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Ed. Física',t:'Richi'},M:{s:'Religión',t:'Bea AL'},X:{s:'Galego',t:'Silvia L.'},J:{s:'Sociais',t:'Silvia L.'},V:{s:'Inglés',t:'Arancha'}},
+    '5ª':    {L:{s:'Naturais',t:'Silvia L.'},M:{s:'Galego',t:'Silvia L.'},X:{s:'Lengua',t:'Silvia L.'},J:{s:'Lengua',t:'Silvia L.'},V:{s:'Música',t:'Mikel'}},
+  }},
+  '1ºB': { level:'primaria', tutor:'Arancha', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Arancha'},M:{s:'Galego',t:'Arancha'},X:{s:'Galego',t:'Arancha'},J:{s:'Galego',t:'Arancha'},V:{s:'Galego',t:'Arancha'}},
+    '2ª':    {L:{s:'Lengua',t:'Arancha'},M:{s:'Inglés',t:'Arancha'},X:{s:'Lengua',t:'Arancha'},J:{s:'Lengua',t:'Arancha'},V:{s:'Lengua',t:'Arancha'}},
+    '3ª':    {L:{s:'Ed. Física',t:'Richi'},M:{s:'Ed. Física',t:'Richi'},X:{s:'Música',t:'Mikel'},J:{s:'Sociais',t:'Arancha'},V:{s:'Plástica',t:'Silvia L.'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Matemáticas',t:'Teresa'},M:{s:'Matemáticas',t:'Teresa'},X:{s:'Matemáticas',t:'Teresa'},J:{s:'Matemáticas',t:'Teresa'},V:{s:'Matemáticas',t:'Teresa'}},
+    '5ª':    {L:{s:'Naturais',t:'Noelia'},M:{s:'Proyecto Comp.',t:'Ana Arm'},X:{s:'Naturais',t:'Noelia'},J:{s:'Naturais',t:'Noelia'},V:{s:'Inglés',t:'Arancha'}},
+  }},
+  '2ºA': { level:'primaria', tutor:'Bea AL', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Bea AL'},M:{s:'Galego',t:'Bea AL'},X:{s:'Galego',t:'Bea AL'},J:{s:'Galego',t:'Bea AL'},V:{s:'Galego',t:'Bea AL'}},
+    '2ª':    {L:{s:'Lengua',t:'Bea AL'},M:{s:'Lengua',t:'Bea AL'},X:{s:'Lengua',t:'Bea AL'},J:{s:'Lengua',t:'Bea AL'},V:{s:'Plástica',t:'Mª Prieto'}},
+    '3ª':    {L:{s:'Matemáticas',t:'Bea AL'},M:{s:'Religión',t:'Bea AL'},X:{s:'Matemáticas',t:'Bea AL'},J:{s:'Matemáticas',t:'Bea AL'},V:{s:'Matemáticas',t:'Bea AL'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Naturais',t:'Bea AL'},M:{s:'Ed. Física',t:'Óscar'},X:{s:'Inglés',t:'Diego'},J:{s:'Sociais',t:'Bea AL'},V:{s:'Inglés',t:'Diego'}},
+    '5ª':    {L:{s:'Sociais',t:'Bea AL'},M:{s:'Naturais',t:'Bea AL'},X:{s:'Música',t:'Mikel'},J:{s:'Lengua',t:'Bea AL'},V:{s:'Ed. Física',t:'Óscar'}},
+  }},
+  '2ºB': { level:'primaria', tutor:'Ana Arm.', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Ana Arm.'},M:{s:'Galego',t:'Ana Arm.'},X:{s:'Galego',t:'Ana Arm.'},J:{s:'Galego',t:'Ana Arm.'},V:{s:'Galego',t:'Ana Arm.'}},
+    '2ª':    {L:{s:'Lengua',t:'Ana Arm.'},M:{s:'Lengua',t:'Ana Arm.'},X:{s:'Lengua',t:'Ana Arm.'},J:{s:'Lengua',t:'Ana Arm.'},V:{s:'Inglés',t:'Diego'}},
+    '3ª':    {L:{s:'Matemáticas',t:'Ana Arm.'},M:{s:'Matemáticas',t:'Ana Arm.'},X:{s:'Matemáticas',t:'Ana Arm.'},J:{s:'Matemáticas',t:'Ana Arm.'},V:{s:'Matemáticas',t:'Ana Arm.'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Naturais',t:'Ana Arm.'},M:{s:'Sociais',t:'Ana Arm.'},X:{s:'Religión',t:''},J:{s:'Inglés',t:'Diego'},V:{s:'Ed. Física',t:'Óscar'}},
+    '5ª':    {L:{s:'Plástica',t:'Mª Prieto'},M:{s:'Ed. Física',t:'Óscar'},X:{s:'Sociais',t:'Ana Arm.'},J:{s:'Música',t:'Mikel'},V:{s:'Naturais',t:'Ana Arm.'}},
+  }},
+  '3ºA': { level:'primaria', tutor:'Ada', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Ada'},M:{s:'Galego',t:'Ada'},X:{s:'Galego',t:'Ada'},J:{s:'Galego',t:'Ada'},V:{s:'Galego',t:'Ada'}},
+    '2ª':    {L:{s:'Lengua',t:'Ada'},M:{s:'Lengua',t:'Ada'},X:{s:'Lengua',t:'Ada'},J:{s:'Lengua',t:'Ada'},V:{s:'Lengua',t:'Ada'}},
+    '3ª':    {L:{s:'Música',t:'Mikel'},M:{s:'Ed. Física',t:'Óscar'},X:{s:'Matemáticas',t:'Ada'},J:{s:'Matemáticas',t:'Ada'},V:{s:'Matemáticas',t:'Ada'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Naturais',t:'Ada'},M:{s:'Sociais',t:'Ada'},X:{s:'Inglés',t:'Arancha'},J:{s:'Inglés',t:'Arancha'},V:{s:'Religión',t:''}},
+    '5ª':    {L:{s:'Plástica',t:'Ada'},M:{s:'Inglés',t:'Arancha'},X:{s:'Naturais',t:'Ada'},J:{s:'Ed. Física',t:'Óscar'},V:{s:'Sociais',t:'Ada'}},
+  }},
+  '3ºB': { level:'primaria', tutor:'Montse', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Montse'},M:{s:'Galego',t:'Montse'},X:{s:'Galego',t:'Montse'},J:{s:'Galego',t:'Montse'},V:{s:'Música',t:'Mikel'}},
+    '2ª':    {L:{s:'Lengua',t:'Montse'},M:{s:'Lengua',t:'Montse'},X:{s:'Lengua',t:'Montse'},J:{s:'Ed. Física',t:'Óscar'},V:{s:'Lengua',t:'Montse'}},
+    '3ª':    {L:{s:'Matemáticas',t:'Montse'},M:{s:'Inglés',t:'Arancha'},X:{s:'Matemáticas',t:'Montse'},J:{s:'Matemáticas',t:'Montse'},V:{s:'Matemáticas',t:'Montse'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Ed. Física',t:'Óscar'},M:{s:'Sociais',t:'Montse'},X:{s:'Plástica',t:'Ada'},J:{s:'Naturais',t:'Montse'},V:{s:'Naturais',t:'Montse'}},
+    '5ª':    {L:{s:'Sociais',t:'Montse'},M:{s:'Naturais',t:'Montse'},X:{s:'Inglés',t:'Arancha'},J:{s:'Inglés',t:'Arancha'},V:{s:'Religión',t:''}},
+  }},
+  '4ºA': { level:'primaria', tutor:'Ana Jato', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Ana Jato'},M:{s:'Ed. Física',t:'Óscar'},X:{s:'Galego',t:'Ana Jato'},J:{s:'Galego',t:'Ana Jato'},V:{s:'Ed. Física',t:'Óscar'}},
+    '2ª':    {L:{s:'Lengua',t:'Ana Jato'},M:{s:'Inglés',t:'Diego'},X:{s:'Inglés',t:'Diego'},J:{s:'Lengua',t:'Ana Jato'},V:{s:'Lengua',t:'Ana Jato'}},
+    '3ª':    {L:{s:'Matemáticas',t:'Ana Jato'},M:{s:'Matemáticas',t:'Ana Jato'},X:{s:'Matemáticas',t:'Ana Jato'},J:{s:'Inglés',t:'Diego'},V:{s:'Música',t:'Mikel'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Religión',t:''},M:{s:'Sociais',t:'Ana Jato'},X:{s:'Naturais',t:'Ana Jato'},J:{s:'Sociais',t:'Ana Jato'},V:{s:'Plástica',t:''}},
+    '5ª':    {L:{s:'Naturais',t:'Ana Jato'},M:{s:'Lengua',t:'Ana Jato'},X:{s:'Sociais',t:'Ana Jato'},J:{s:'Matemáticas',t:'Ana Jato'},V:{s:'Galego',t:'Ana Jato'}},
+  }},
+  '4ºB': { level:'primaria', tutor:'Rocío / Noelia', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Rocío'},M:{s:'Galego',t:'Rocío'},X:{s:'Galego',t:'Rocío'},J:{s:'Ed. Física',t:'Óscar'},V:{s:'Religión',t:''}},
+    '2ª':    {L:{s:'Lengua',t:'Rocío'},M:{s:'Lengua',t:'Rocío'},X:{s:'Lengua',t:'Rocío'},J:{s:'Lengua',t:'Rocío'},V:{s:'Matemáticas',t:'Rocío'}},
+    '3ª':    {L:{s:'Sociais',t:'Rocío'},M:{s:'Sociais',t:'Rocío'},X:{s:'Sociais',t:'Rocío'},J:{s:'Galego',t:'Rocío'},V:{s:'Inglés',t:'Diego'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Matemáticas',t:'Rocío'},M:{s:'Matemáticas',t:'Rocío'},X:{s:'Matemáticas',t:'Rocío'},J:{s:'Sociais',t:'Rocío'},V:{s:'Música',t:'Mikel'}},
+    '5ª':    {L:{s:'Ed. Física',t:'Óscar'},M:{s:'Naturais',t:'Rocío'},X:{s:'Inglés',t:'Diego'},J:{s:'Inglés',t:'Diego'},V:{s:'Plástica',t:''}},
+  }},
+  '5ºA': { level:'primaria', tutor:'Caty', schedule:{
+    '1ª':    {L:{s:'Galego',t:'Caty'},M:{s:'Galego',t:'Caty'},X:{s:'Música',t:'Mikel'},J:{s:'Galego',t:'Caty'},V:{s:'Galego',t:'Caty'}},
+    '2ª':    {L:{s:'Lengua',t:'Caty'},M:{s:'Lengua',t:'Caty'},X:{s:'Plástica',t:'Mikel'},J:{s:'Inglés',t:'Diego'},V:{s:'Lengua',t:'Caty'}},
+    '3ª':    {L:{s:'Matemáticas',t:'Caty'},M:{s:'Inglés',t:'Diego'},X:{s:'Inglés',t:'Diego'},J:{s:'Matemáticas',t:'Caty'},V:{s:'Ed. Física',t:'Richi'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Naturais',t:'Caty'},M:{s:'Sociais',t:'Caty'},X:{s:'Naturais',t:'Caty'},J:{s:'Sociais',t:'Caty'},V:{s:'Naturais',t:'Caty'}},
+    '5ª':    {L:{s:'Religión / PC',t:''},M:{s:'Matemáticas',t:'Caty'},X:{s:'Ed. Física',t:'Richi'},J:{s:'Naturais',t:'Caty'},V:{s:'Sociais',t:'Caty'}},
+  }},
+  '5ºB': { level:'primaria', tutor:'Bea R.', schedule:{
+    '1ª':    {L:{s:'Matemáticas',t:'Mikel'},M:{s:'Inglés',t:'Diego'},X:{s:'Galego',t:'Bea R.'},J:{s:'Inglés',t:'Diego'},V:{s:'Galego',t:'Bea R.'}},
+    '2ª':    {L:{s:'Galego',t:'Bea R.'},M:{s:'Ed. Física',t:'Richi'},X:{s:'Ed. Física',t:'Richi'},J:{s:'Galego',t:'Bea R.'},V:{s:'Matemáticas',t:'Mikel'}},
+    '3ª':    {L:{s:'Lengua',t:'Bea R.'},M:{s:'Matemáticas',t:'Mikel'},X:{s:'Lengua',t:'Bea R.'},J:{s:'Lengua',t:'Bea R.'},V:{s:'Lengua',t:'Bea R.'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Naturais',t:'Bea R.'},M:{s:'Sociais',t:'Bea R.'},X:{s:'Matemáticas',t:'Mikel'},J:{s:'Sociais',t:'Bea R.'},V:{s:'Naturais',t:'Bea R.'}},
+    '5ª':    {L:{s:'Plástica',t:'Mikel'},M:{s:'Música',t:'Mikel'},X:{s:'Religión / PC',t:''},J:{s:'Naturais',t:'Bea R.'},V:{s:'Inglés',t:'Diego'}},
+  }},
+  '6ºA': { level:'primaria', tutor:'María Pr.', schedule:{
+    '1ª':    {L:{s:'Ed. Física',t:'Richi'},M:{s:'Inglés',t:'Bea R.'},X:{s:'Galego',t:'María Pr.'},J:{s:'Galego',t:'María Pr.'},V:{s:'Galego',t:'María Pr.'}},
+    '2ª':    {L:{s:'Lengua',t:'María Pr.'},M:{s:'Música',t:'Mikel'},X:{s:'Lengua',t:'María Pr.'},J:{s:'Lengua',t:'María Pr.'},V:{s:'Inglés',t:'Bea R.'}},
+    '3ª':    {L:{s:'Matemáticas',t:'María Pr.'},M:{s:'Matemáticas',t:'María Pr.'},X:{s:'Ed. Física',t:'Richi'},J:{s:'Matemáticas',t:'María Pr.'},V:{s:'Religión',t:''}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Sociais',t:'María Pr.'},M:{s:'Naturais',t:'María Pr.'},X:{s:'Naturais',t:'María Pr.'},J:{s:'Sociais',t:'María Pr.'},V:{s:'Plástica',t:'María Pr.'}},
+    '5ª':    {L:{s:'Inglés',t:'Bea R.'},M:{s:'Sociais',t:'María Pr.'},X:{s:'Naturais',t:'María Pr.'},J:{s:'Valores Cívicos',t:'María Pr.'},V:{s:'Matemáticas',t:'María Pr.'}},
+  }},
+  '6ºB': { level:'primaria', tutor:'Cris M.', schedule:{
+    '1ª':    {L:{s:'Inglés',t:'Diego'},M:{s:'Galego',t:'Cris M.'},X:{s:'Galego',t:'Cris M.'},J:{s:'Inglés',t:'Diego'},V:{s:'Galego',t:'Cris M.'}},
+    '2ª':    {L:{s:'Música',t:'Mikel'},M:{s:'Inglés',t:'Diego'},X:{s:'Religión / PC',t:''},J:{s:'Lengua',t:'Cris M.'},V:{s:'Ed. Física',t:'Richi'}},
+    '3ª':    {L:{s:'Lengua',t:'Cris M.'},M:{s:'Lengua',t:'Cris M.'},X:{s:'Lengua',t:'Cris M.'},J:{s:'Lengua',t:'Cris M.'},V:{s:'Lengua',t:'Cris M.'}},
+    'Recreo':{L:null,M:null,X:null,J:null,V:null},
+    '4ª':    {L:{s:'Matemáticas',t:'Cris M.'},M:{s:'Matemáticas',t:'Cris M.'},X:{s:'Ed. Física',t:'Richi'},J:{s:'Matemáticas',t:'Cris M.'},V:{s:'Matemáticas',t:'Cris M.'}},
+    '5ª':    {L:{s:'Naturais',t:'Cris M.'},M:{s:'Sociais',t:'Cris M.'},X:{s:'Naturais',t:'Cris M.'},J:{s:'Naturais',t:'Cris M.'},V:{s:'Sociais',t:'Cris M.'}},
+  }},
+};
+
+const DAY_KEYS  = ['L','M','X','J','V'];
+const DAY_NAMES = {L:'Lunes',M:'Martes',X:'Miércoles',J:'Jueves',V:'Viernes'};
+const CLASS_SESSIONS = ['1ª','2ª','3ª','Recreo','4ª','5ª'];
+
+// ========== ALUMNADO STATE ==========
+let selectedClass   = null;
+let classEditMode   = false;
+let classPending    = {};
+let currentLevelFilter = 'infantil';
+
+function filterLevel(level) {
+  currentLevelFilter = level;
+  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderCourseGrid();
+}
+
+function renderCourseGrid() {
+  const grid = document.getElementById('course-grid');
+  grid.innerHTML = Object.entries(classData)
+    .filter(([,v]) => currentLevelFilter === 'all' || v.level === currentLevelFilter)
+    .map(([name, info]) => `
+      <button class="course-chip ${info.level} ${selectedClass === name ? 'selected' : ''}"
+              onclick="selectClass('${name}')">${name}</button>
+    `).join('');
+}
+
+function selectClass(name) {
+  if (classEditMode) cancelClassEdit();
+  selectedClass = name;
+  renderCourseGrid();
+  renderClassSchedule(name);
+}
+
+function resolveCell(className, sess, dk) {
+  const key = `${className}||${sess}||${dk}`;
+  if (classPending[key] !== undefined) return classPending[key];
+  return classData[className]?.schedule?.[sess]?.[dk] || null;
+}
+
+function getCellTypeClass(cell) {
+  if (!cell || (!cell.s && !cell.t)) return 'empty';
+  const v = (cell.s + ' ' + cell.t).toLowerCase();
+  if (v.includes('ed. física') || v.includes('inglés') || v.includes('música') ||
+      v.includes('plástica')   || v.includes('religión') || v.includes('psicomotricidad') ||
+      v.includes('valores cívicos') || v.includes('proyecto comp'))
+    return 'specialist';
+  return 'tutor';
+}
+
+function formatCell(cell, tutor) {
+  if (!cell) return '<span class="teacher-cell empty">—</span>';
+  const subject = cell.s || '(titoría)';
+  const teacher = cell.t || tutor;
+  const cls = getCellTypeClass(cell);
+  return `<span class="teacher-cell ${cls}"><span class="cell-slot"><span class="cell-subject">${subject}</span><span class="cell-teacher-name">${teacher}</span></span></span>`;
+}
+
+function renderClassSchedule(name) {
+  const info = classData[name];
+  if (!info) return;
+
+  const rows = CLASS_SESSIONS.map(sess => {
+    if (sess === 'Recreo') {
+      return `<tr class="recreo-row"><td>—</td>${DAY_KEYS.map(()=>'<td>🕐 Recreo</td>').join('')}</tr>`;
+    }
+    const cells = DAY_KEYS.map(dk => {
+      const cell = resolveCell(name, sess, dk);
+      if (classEditMode) {
+        const s = cell ? (cell.s || '') : '';
+        const t = cell ? (cell.t || '') : '';
+        return `<td class="cls-editable">
+          <div class="cls-input-wrap">
+            <div><div class="cls-input-label">Materia</div>
+              <input class="cls-input subject-input" value="${s}" placeholder="Materia..."
+                onblur="commitClassEdit(this,'${name}','${sess}','${dk}','s')"
+                onkeydown="if(event.key==='Enter'&&this.closest('td').querySelector('.teacher-input'))this.closest('td').querySelector('.teacher-input').focus()">
+            </div>
+            <div><div class="cls-input-label">Profesor/a</div>
+              <input class="cls-input teacher-input" value="${t}" placeholder="Profesor/a..."
+                onblur="commitClassEdit(this,'${name}','${sess}','${dk}','t')"
+                onkeydown="if(event.key==='Enter')this.blur()">
+            </div>
+          </div>
+        </td>`;
+      }
+      return `<td>${formatCell(cell, info.tutor)}</td>`;
+    }).join('');
+    return `<tr><td class="session-label">${sess}</td>${cells}</tr>`;
+  }).join('');
+
+  const accentColor = info.level === 'infantil' ? 'var(--green)' : 'var(--slate)';
+  document.getElementById('class-schedule-container').innerHTML = `
+    <div class="card">
+      <div class="card-header" style="background:${accentColor};color:#fff;border-bottom:none;flex-wrap:wrap;gap:.5rem">
+        <div>
+          <strong style="font-size:1.1rem">${name}</strong>
+          <div style="opacity:.85;font-size:.82rem;margin-top:.15rem">Titor/a: ${info.tutor} · ${info.level==='infantil'?'🌱 Infantil':'📚 Primaria'}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;padding:.55rem 1rem;background:#f8f9fb;border-bottom:1px solid var(--border);font-size:.77rem;flex-wrap:wrap;align-items:center">
+        <span><span class="teacher-cell tutor" style="font-size:.7rem;padding:.1rem .4rem">●</span> Titor/a</span>
+        <span><span class="teacher-cell specialist" style="font-size:.7rem;padding:.1rem .4rem">●</span> Especialista</span>
+        <span style="color:var(--ink3);font-size:.72rem;margin-left:auto">Materia · Profesor/a</span>
+      </div>
+      <div class="scroll-hint">← desliza para ver todos los días →</div>
+      <div class="schedule-wrap">
+        <table class="class-schedule-table">
+          <thead><tr><th>Sesión</th>${DAY_KEYS.map(dk=>`<th>${DAY_NAMES[dk]}</th>`).join('')}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+// ========== CLASS EDIT MODE ==========
+function toggleClassEdit() {
+  if (!selectedClass) { showToast('⚠️ Selecciona primero un curso', 'warn'); return; }
+  classEditMode = true; classPending = {};
+  document.getElementById('class-edit-toggle-btn').style.display = 'none';
+  document.getElementById('class-save-btn').style.display = '';
+  document.getElementById('class-cancel-btn').style.display = '';
+  document.getElementById('class-edit-badge').classList.add('visible');
+  document.getElementById('class-edit-hint').textContent = 'Edita materia y profesor/a en cada celda';
+  renderClassSchedule(selectedClass);
+}
+
+function cancelClassEdit() {
+  classEditMode = false; classPending = {};
+  document.getElementById('class-edit-toggle-btn').style.display = '';
+  document.getElementById('class-save-btn').style.display = 'none';
+  document.getElementById('class-cancel-btn').style.display = 'none';
+  document.getElementById('class-edit-badge').classList.remove('visible');
+  document.getElementById('class-edit-hint').textContent = '';
+  if (selectedClass) renderClassSchedule(selectedClass);
+}
+
+function commitClassEdit(input, cls, sess, dk, field) {
+  const key = `${cls}||${sess}||${dk}`;
+  if (!classPending[key]) {
+    const orig = classData[cls]?.schedule?.[sess]?.[dk] || {s:'',t:''};
+    classPending[key] = { s: orig.s || '', t: orig.t || '' };
+  }
+  classPending[key][field] = input.value.trim();
+}
+
+function saveClassChanges() {
+  for (const key in classPending) {
+    const [cls, sess, dk] = key.split('||');
+    if (!classData[cls].schedule[sess]) classData[cls].schedule[sess] = {};
+    classData[cls].schedule[sess][dk] = { ...classPending[key] };
+  }
+  cancelClassEdit();
+  showToast('✅ Horario del curso guardado');
+}
+
+// ========== TOAST ==========
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = type === 'warn' ? 'var(--red)' : 'var(--green)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ========== BOOT ==========
+init();
+renderCourseGrid();
+</script>
+</body>
+</html>
